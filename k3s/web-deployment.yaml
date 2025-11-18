@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server
+  labels:
+    app: web-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-server
+  template:
+    metadata:
+      labels:
+        app: web-server
+    spec:
+      containers:
+        - name: web-server
+          image: web-server:v1
+          imagePullPolicy: Never  # 本地镜像必须设置为 Never
+          ports:
+            - containerPort: 8080  
